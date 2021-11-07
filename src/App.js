@@ -7,21 +7,30 @@ export default function App() {
   const wave = () => {
     
   }
+
+  const shaka = () => {
+
+  }
   
   return (
     <div className="mainContainer">
 
       <div className="dataContainer">
         <div className="header">
-        👋 Hey there!
+          Hello
         </div>
 
         <div className="bio">
-        I am farza and I worked on self-driving cars so that's pretty cool right? Connect your Ethereum wallet and wave at me!
+          How are you feeling today?
+          Connect your Ethereum wallet and give me a 👋  or 🤙
         </div>
 
-        <button className="waveButton" onClick={wave}>
+        <button className="interactButton" onClick={wave}>
           Wave at Me
+        </button>
+
+        <button className="interactButton" onClick={shaka}>
+          Shaka at Me
         </button>
       </div>
     </div>
