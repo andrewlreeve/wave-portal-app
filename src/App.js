@@ -7,6 +7,7 @@ export default function App() {
   // State variable to store our user's public wallet
   const [currentAccount, setCurrentAccount] = useState("");
   const [allWaves, setAllWaves] = useState([]);
+  const [message, setMessage] = useState("");
   const contractAddress = "0x69E04dd02FD0184C7a708C67D246Db78e65a3D68";
   const contractABI = WavePortal.abi; 
 
@@ -84,7 +85,7 @@ export default function App() {
         });
 
         // store our data in React State
-        setAllWaves(wavesCleaned);
+        setAllWaves(wavesCleaned.reverse());
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -93,8 +94,9 @@ export default function App() {
     } 
   }
 
-  async function wave() {
+  async function wave(event) {
     try {
+      event.preventDefault();
       const { ethereum } = window;
 
       if (ethereum) {
@@ -106,7 +108,7 @@ export default function App() {
         console.log("Retrieved total wave count...", count.toNumber());
 
         // Execute the actual wave from the smart contract
-        const waveTxn = await wavePortalContract.wave("This is an example message"); //TODO
+        const waveTxn = await wavePortalContract.wave(message); //TODO
         console.log("Mining...", waveTxn.hash);
 
         await waveTxn.wait();
@@ -124,40 +126,41 @@ export default function App() {
     }  
   }
 
-  const shaka = () => {
-
-  }
-  
   return (
     <div className="mainContainer">
 
       <div className="dataContainer">
-        <div className="header">
+        <h1>
           Hello
-        </div>
+        </h1>
 
         <div className="bio">
-          How are you feeling today?
-          Connect your Ethereum wallet and give me a 👋  or 🤙
+          Send me a wave and message that will be saved on the Rinkeby Testnet 
         </div>
         
         {!currentAccount && (
           <button className="interactButton" onClick={connectWallet}>
-            Connect Metamask
+            Connect Metamask on Rinkeby Testnet
           </button>
         )}
 
         {currentAccount && (
-          <button className="interactButton" onClick={wave}>
-            Wave at Me
-          </button>
+          <form onSubmit={wave}>
+            <label>
+              Message
+              <input
+                type="text" 
+                value={message} 
+                onChange={event => setMessage(event.target.value)}
+              />
+            </label>
+            <button type="submit" className="interactButton">Wave</button>
+          </form>
         )}
 
-        {currentAccount && (
-          <button className="interactButton" onClick={shaka}>
-            Shaka at Me
-          </button>
-        )}
+        <h2>
+          Previous Messages
+        </h2>
 
         {allWaves.map((wave, index) => {
           return (
