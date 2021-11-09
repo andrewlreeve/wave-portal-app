@@ -60,6 +60,7 @@ export default function App() {
 
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
+      getAllWaves();
     } catch (error) {
       console.log(error);
     }
@@ -132,10 +133,11 @@ export default function App() {
       <div className="dataContainer">
         <h1>
           Hello
+          <span role="img" aria-label="wave"> 👋</span>
         </h1>
 
         <div className="bio">
-          Send me a wave and message that will be saved on the Rinkeby Testnet 
+          Send me a wave and message to be saved forever on the Rinkeby Testnet
         </div>
         
         {!currentAccount && (
@@ -154,13 +156,18 @@ export default function App() {
                 onChange={event => setMessage(event.target.value)}
               />
             </label>
-            <button type="submit" className="interactButton">Wave</button>
+            <button type="submit" className="interactButton">
+              Wave
+              <span role="img" aria-label="wave"> 👋</span>
+            </button>
           </form>
         )}
 
-        <h2>
-          Previous Messages
-        </h2>
+        {currentAccount && (
+          <h2>
+            Previous Messages
+          </h2>
+        )}
 
         {allWaves.map((wave, index) => {
           return (
@@ -170,6 +177,7 @@ export default function App() {
               <div>Message: {wave.message}</div>
             </div>)
         })}
+
       </div>
     </div>
   );

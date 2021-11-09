@@ -43,7 +43,7 @@ h2 {
 .waveList {
   background-color: oldlace;
   margin-top: 16px;
-  padding: 8px;
+  padding: 10px;
 }
 
 form {
@@ -56,7 +56,7 @@ input {
 
 input[type=text] {
   box-sizing: border-box;
-  padding: 6px;
+  padding: 9px;
   margin-top: 10px;
   border: 2px solid #eee;
   border-radius: 5px;
