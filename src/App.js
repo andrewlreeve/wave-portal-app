@@ -8,7 +8,7 @@ export default function App() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [allWaves, setAllWaves] = useState([]);
   const [message, setMessage] = useState("");
-  const contractAddress = "0x69E04dd02FD0184C7a708C67D246Db78e65a3D68";
+  const contractAddress = "0x14ad30dF701803a351A504aD0142aaa82625c703";
   const contractABI = WavePortal.abi; 
 
   // Run our function when the page loads
